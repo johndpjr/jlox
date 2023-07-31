@@ -16,7 +16,10 @@ public class App  {
             System.out.println("Usage: jlox [script]");
             System.exit(64);
         } else if (args.length == 1) {
+            final long startTime = System.nanoTime();
             runFile(args[0]);
+            final long duration = System.nanoTime() - startTime;
+            System.out.printf("\n---\nTotal time: %.3f s\n", duration / 1_000_000_000.0);
         } else {
             runPrompt();
         }
