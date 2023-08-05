@@ -12,7 +12,7 @@ abstract class Stmt {
     R visitPrintStmt(Print stmt);
     // R visitReturnStmt(Return stmt);
     R visitVarStmt(Var stmt);
-    // R visitWhileStmt(While stmt);
+    R visitWhileStmt(While stmt);
   }
 
   // Nested Stmt classes here...
@@ -147,20 +147,20 @@ abstract class Stmt {
   }
 //< stmt-var
 //> stmt-while
-//   static class While extends Stmt {
-//     While(Expr condition, Stmt body) {
-//       this.condition = condition;
-//       this.body = body;
-//     }
+  static class While extends Stmt {
+    While(Expr condition, Stmt body) {
+      this.condition = condition;
+      this.body = body;
+    }
 
-//     @Override
-//     <R> R accept(Visitor<R> visitor) {
-//       return visitor.visitWhileStmt(this);
-//     }
+    @Override
+    <R> R accept(Visitor<R> visitor) {
+      return visitor.visitWhileStmt(this);
+    }
 
-//     final Expr condition;
-//     final Stmt body;
-//   }
+    final Expr condition;
+    final Stmt body;
+  }
 //< stmt-while
 
   abstract <R> R accept(Visitor<R> visitor);
