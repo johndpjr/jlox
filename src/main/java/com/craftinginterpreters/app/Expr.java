@@ -13,7 +13,7 @@ abstract class Expr {
         R visitLogicalExpr(Logical expr);
         R visitSetExpr(Set expr);
         // R visitSuperExpr(Super expr);
-        // R visitThisExpr(This expr);
+        R visitThisExpr(This expr);
         R visitUnaryExpr(Unary expr);
         R visitVariableExpr(Variable expr);
     }
@@ -168,18 +168,18 @@ abstract class Expr {
     // }
 //< expr-super
 //> expr-this
-    // static class This extends Expr {
-    //     This(Token keyword) {
-    //         this.keyword = keyword;
-    //     }
+    static class This extends Expr {
+        This(Token keyword) {
+            this.keyword = keyword;
+        }
 
-    //     @Override
-    //     <R> R accept(Visitor<R> visitor) {
-    //         return visitor.visitThisExpr(this);
-    //     }
+        @Override
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitThisExpr(this);
+        }
 
-    //     final Token keyword;
-    // }
+        final Token keyword;
+    }
 //< expr-this
 //> expr-unary
     static class Unary extends Expr {
